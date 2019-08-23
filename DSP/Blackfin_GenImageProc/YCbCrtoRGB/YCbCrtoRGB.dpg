@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding='ISO-8859-1'?>
+<visualdsp-project-group generated="Wed Jan 26 11:07:35 2005" version="1.0.0.0" active-project="YCbCrtoRGB">
+	<project name="YCbCrtoRGB" file=".\YCbCrtoRGB.dpj">
+		<dependencies>
+			<dependent-project>corea</dependent-project>
+			<dependent-project>coreb</dependent-project>
+			<dependent-project>sml2</dependent-project>
+			<dependent-project>sml3</dependent-project>
+		</dependencies>
+	</project>
+	<project name="corea" file=".\corea\corea.dpj">
+	</project>
+	<project name="coreb" file=".\coreb\coreb.dpj">
+	</project>
+	<project name="sml2" file=".\sml2\sml2.dpj">
+	</project>
+	<project name="sml3" file=".\sml3\sml3.dpj">
+	</project>
+</visualdsp-project-group>

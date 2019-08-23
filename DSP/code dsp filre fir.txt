@@ -1,0 +1,45 @@
+#define n 6 //taille de coef
+#define n_fir 1024 //taille du buffer
+
+.section data1;
+
+.byte2 _coef[n] = "D:\coef.dat";
+.byte2 _buffer[n_fir] = "D:\signal.dat";
+.byte2 _y[n_fir];
+.section L1_code ;
+.global _filtre ;
+
+ _filtre :
+  nop ;
+ // Initialisation des paramètres de filtre
+ I0.L=_buffer; 
+ I0.H=_buffer;
+ I2.L=_coef;
+ I2.H=_coef;
+ I1.L=_y;
+ I1.H=_y;
+ //Circular Buffering
+ L2=n*2;
+ B2.L=_coef;
+ B2.H=_coef;
+ P0=n_fir-n ;
+ P1=n;
+ M0=(n-1)*2;
+ //Parcours du Buffer
+ Lsetup(debut1 , fin1)LC0=P0 ;
+ debut1 : A0=0 ;
+ //Parcours des coefficients
+ Lsetup(debut , fin)LC1=P1 ;
+ //Affectation des valeurs des pointeurs I0 et I2 dans les registres
+ debut : R0.L=W[I0++] ;
+ 		 R1.L=W[I2++] ;
+ //Effectuer la convolution
+ A0+=R0.L*R1.L ;
+ fin :nop ;
+ R4=A0.W;
+ W[I1++]= R4.H ;
+ I0-=M0 ;
+ fin1 :nop ;
+ RTS;
+filtre.end :
+ 

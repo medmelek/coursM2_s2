@@ -1,0 +1,55 @@
+\documentclass[12pt]{report}
+\usepackage{graphicx}
+\begin{document}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=8cm]{logo.jpg} 
+\caption{Logo ISNoT2018}
+\end{figure}
+
+\begin{wrapfigure}
+\centering
+\includegraphics[width=4cm]{logo.jpg}
+\end{wrapfigure}
+Logo ISNoT2018
+
+\includegraphics[scale=0.05]{logo.jpg}
+\includegraphics[scale=0.1]{logo.jpg}
+\includegraphics[scale=0.2]{logo.jpg}
+\includegraphics*[bb=20 20 302 334,width=3.15cm,clip]{logo.jpg}
+\includegraphics*[bb=0 0 282 314 ,width=3.15cm,clip]{logo.jpg}
+\newline
+\newline
+\newline
+\begin{figure}[!h]
+\centering
+\includegraphics[width=12cm , height=5cm]{logo.jpg}
+\caption{Logo ISNoT2018  12cm*5cm}
+\end{figure}
+\newline
+\newline
+
+\begin{figure}[!h]
+\centering
+\includegraphics[angle=45]{logo.jpg}
+\caption{Logo ISNoT2018  angle=45}
+\end{figure}
+
+\newline
+\newline
+\begin{figure}[!h]
+\centering
+\includegraphics*[90,108][260,208]{logo.jpg}
+\caption{[90,108][260,208]}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[trim = 6cm 0cm 0cm 0cm, clip]{logo.jpg}
+\caption{trim = 6cm 0cm 0cm 0cm}
+\end{figure}
+
+
+
+\end{document}

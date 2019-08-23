@@ -1,0 +1,236 @@
+\documentclass[12 pt]{report}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage[rightcaption]{sidecap}
+\usepackage{floatrow}
+\usepackage{epstopdf}
+
+\begin{document}
+\begin{figure}
+\begin{center}
+\includegraphics[height=100, width=200, angle=0]{1.jpg}
+\end{center}
+\end{figure}
+\center
+\qquad
+\Huge 
+ISET'COM
+
+\Huge\hrulefill
+
+\center \Huge  Residual Energy and Density Control Aware Cluster
+Head Election in Wireless Sensor Network
+
+\Huge\hrulefill
+\normalsize
+\flushleft Auteur:                    
+
+Premier Auteur: MEDDAH MAREIM      
+
+Deuxieme Auteur:  RIM HADDAD      
+
+
+\newpage
+\center \Huge Abstract
+\normalsize \flushleft 
+Abstract—In designing the Wireless Sensor Network, the
+energy consumption represents one of the most and important
+factor that recent researches aim to reduce efficiently. Because of
+the limited energy that sensor nodes are equipped with, and in
+order to prolong the network lifetime, we introduce a new
+clustering algorithm for WSN, which consists on choosing a
+subset of sensor nodes to be elected as Cluster Heads. This choice
+is based on three parameters; the residual energy, the density
+and the distances separating the node with its neighbors. Each
+node enters into a competition and makes its proper decision.
+Then, the network is divided into clusters and each member is
+affected to the nearest CH that has the job to gather the data of
+the members of its cluster. The efficiency of our proposed
+algorithm is proved comparing with some other clustering
+approaches. Simulation results show that the energy dissipation
+of the sensor nodes can be considerably reduced, and the network
+lifetime efficiently extended.
+\flushright Keywords— Wireless Sensor Networks; Residual Energy;
+Cluster Head election; Density ; Neighbor Distance
+\flushleft
+\newpage 
+\tableofcontents
+
+\newpage
+\chapter{Introduction}
+\qquad
+Over recent years, the importance of Wireless Sensor
+Networks (WSNs) in different domains is considerably
+increasing. It consists on a group of small sensor nodes
+capable to detect and monitor physical conditions from the
+field, and then to transmit data to the Base Station (BS) once
+gathered. These nodes are very low-cost and are capable to
+perform as an autonomous device, but have less storage
+capacity and a limited battery power, that can be depleted very
+quickly, due to the multiple tasks made, such as processing
+and exchanging packets with nodes. 
+
+\qquad 
+The most important challenge in WSN is to extend the
+network lifetime. This can be achieved when the energy
+consumption is efficiently used, and balanced among nodes.
+Many clustering algorithms proposed in the last few years
+have the objective to improve this goal, and are focused on
+how to regroup the sensor nodes deployed into clusters. Each
+created cluster will have a Cluster Head (CH). This node,
+elected in each round, collect data from the other members of
+the cluster, and then send it to the BS.
+
+\qquad 
+Furthermore, to reduce energy consumption, previous
+researches in WSN have been done, considering the residual
+energy as parameter [1] [2] [3], taking into consideration the
+communication cost, the required amount of energy needed for
+a node to send a message to another one [4], or calculating a
+weight for each node to be compared [3]. Also, a random
+number was used in order to have a balanced CH election in
+the network [5] [6]. These different parameters are used to
+elect the suitable CH. But for the clustering step, in some
+researches, the whole network is divided into several clusters,
+choosing the number of clusters before each round of the
+clustering process [7].
+
+\qquad 
+In this paper, a new distributed and competitive algorithm,
+named Cluster Head Election using Residual Energy and
+Density Control (CHEREDC) for wireless sensor network is
+proposed. In the CH election, each node in the network enters
+into an energy and density comparisons. In our algorithm,
+each node must compare its Residual Energy and its density
+with the Residual Energy and the density of the neighbor
+
+nodes. In the cluster creation phase, each CH will choose the
+set of member nodes to be affected to its cluster.
+
+\qquad 
+The remainder of this paper is organized as follows: Section
+II discusses some of the existing clustering techniques; in
+Section III the system model is presented; Section IV and V
+present the proposed algorithms CHEREDC and evaluate its
+performance comparing with previous algorithms. Finally, we
+conclude the paper and discuss some possible future works in
+Section VI.
+\chapter{related work}
+\qquad
+Most of the previous clustering approaches have been done
+aiming to balance the energy consumption of the nodes over
+the network. In this section, we briefly introduce some of these
+proposed algorithms.
+
+\qquad 
+In Low-energy and adaptive clustering hierarchy (LEACH)
+[9], Energy-Efficient Unequal Clustering (EEUC) [5], Cluster
+Head Election mechanism using Fuzzy logic (CHEF) [6] and
+Multi Objectives Fuzzy Clustering Algorithm (MOFCA) [2] a
+probabilistic and distributed method is used, where, the node
+enters into a competition only if its random generated number
+is less than a predefined threshold value Th. For [5] [6] and
+[2], the competition is made by neighbors, they communicate
+and decide together the best node eligible to be elected as CH
+without any contribution from the BS. Therefore, this method
+applied in the election of the CH differs from an algorithm to
+another. In fact, in CHEF, the value of the range is static and
+considered the same for each implemented node, contrary to
+MOFCA [2] and EEUC [5] where it can vary, according to the
+distance separation the node with the BS in [5], or depending
+on the density, the remaining energy and the distance
+separating the node to the BS in [2]. The non-collaboration of
+the BS in the cluster head election process forces the nodes to
+communicate between each other during the entire phase. This
+approach did not help decreasing the relayed packets, so the
+energy consumption of the nodes is increased.
+
+\qquad 
+Then, the proposed approach in Fuzzy C-Mean based
+clustering algorithm (FCM) [10], considers three parameters:
+the Euclidian distance to partition the network, and the
+denoted Xie and Beni’s (XB) index to determine the optimal
+number of cluster. The CHs elected in this algorithm are
+approximately positioned at the center of their clusters and the
+inter-cluster distance is not considered. Contrary to LDC-
+kmean algorithm [7], Residual energy aware mobile data
+gathering in WSN (REAMDC) [3] and Multi-hop Clustering
+Algorithm Based on Spectral Classification for WSN (MHCA-
+SC) [11] where the Euclidian distance is the only parameter
+considered in the clustering step. In [7], the number of
+members node assigned in the clusters is counted. This
+number can vary between two values: N/K – ? and N/K + ?,
+where N represents the number of nodes, K the number of
+clusters chosen in the beginning of the clustering step and ? a
+parameter set equal to 0%,2% or 3% of N. Next, the closest
+node to the center of each cluster is elected as CH. As we
+remark, the energy consumption model is not studied in [7] [9]
+and [10]. These algorithms present many disadvantages in
+terms of consumed energy by the deployed nodes, which are
+
+not balanced over the network. In the recent researches, most
+of the proposed algorithms consider the energy consumption
+in the election of CHs because of the amount of energy that
+CHs need to gather the sensed data from cluster’s member,
+and send them to the BS [2] [5] [6] [12] [14].
+
+\qquad
+In [3] and [8], the election of the CHs requires a
+comparison of the weight between sensor nodes in the cluster.
+The node with a greater weight is the best one eligible to be
+elected as CH. In Tree-cluster- based data-gathering algorithm
+for industrial WSN (TCBDGA) [13], Weight-Based Trees are
+established and considered as clusters using the residual
+energy, the number of neighbors, and the distance to the BS as
+parameters to be compared. The CHs are the nodes in each
+head of the created trees.
+\chapter{SYSTEM MODEL}
+\section{Network Structure}
+\qquad
+In [3] and [8], the election of the CHs requires a
+comparison of the weight between sensor nodes in the cluster.
+The node with a greater weight is the best one eligible to be
+elected as CH. In Tree-cluster- based data-gathering algorithm
+for industrial WSN (TCBDGA) [13], Weight-Based Trees are
+established and considered as clusters using the residual
+energy, the number of neighbors, and the distance to the BS as
+parameters to be compared. The CHs are the nodes in each
+head of the created trees.
+\section{Energy consumption model}
+\qquad
+The energy consumption model adopted here is the same
+in [1]. The energy consumed to transmit and to receive l-bit
+packets over a distance d is given respectively in Equation (1)
+and Equation (2). Where E elec represents the degenerated
+energy per bit in the transmitter and receiver models. The
+parameter epsilone  fs and epsilone mp denote respectively the amplifier energy
+in a free space model with d 2 power loss, and in a multi-path
+fading model with d 4 power loss, according to a threshold
+estimation of the transmission distance d o , which can be
+obtained by Equation (3).
+\newpage
+
+\begin{equation}
+$$E_{TX}(l,d)=\left\lbrace\begin{array}{ll}
+lE_{elec}+\epsilon_{fs}	d^2,\hspace{2cm}d<d_{o}\\
+lE_{elec}+\epsilon_{mp}	d^4,\hspace{2cm}d>d_{o}\\
+\end{array}\right.$$
+\end{equation}
+\begin{equation}
+$$E_{RX}(l)=lE_{elec}
+\end{equation}
+\begin{equation}
+$$D_{0}=\sqrt{\frac{\epsilon_{fs}}{\epsilon_{mp}}}
+\end{equation}
+
+\end{document}
